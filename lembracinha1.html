@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quer Receber a Lembrancinha?</title>
+    <style>
+        /* Estilo da página */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom right, #ff5f6d, #ffc371);
+            text-align: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 40px;
+            padding: 0 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Espaço entre os botões */
+        }
+
+        button {
+            background-color: black; /* Fundo preto */
+            color: white; /* Texto branco */
+            border: none;
+            border-radius: 10px;
+            padding: 15px 40px;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        button:hover {
+            background-color: white;
+            color: black;
+            transform: scale(1.1);
+        }
+
+        #nao {
+            position: relative; /* Mantém o botão no layout normal até se mover */
+        }
+
+        .mensagem-final {
+            display: none;
+            color: white;
+            font-size: 24px;
+            margin-top: 30px;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Comprei uma lembrancinha para você, como um gesto do carinho. Tudo bem se eu levar para você depois?</h1>
+        <div class="container">
+            <button id="sim">Sim</button>
+            <button id="nao">Não</button>
+        </div>
+
+        <div class="mensagem-final" id="mensagemFinal">
+            <p>Fico muito feliz que você aceitou kkkkk! Depois eu levo a lembrancinha. 💝</p>
+        </div>
+    </div>
+
+    <script>
+        const botaoNao = document.getElementById("nao");
+        const botaoSim = document.getElementById("sim");
+        const mensagemFinal = document.getElementById("mensagemFinal");
+
+        // Evento para desktop
+        botaoNao.addEventListener("mouseover", function() {
+            moverBotao();
+        });
+
+        // Evento para smartphones e tablets
+        botaoNao.addEventListener("touchstart", function() {
+            moverBotao();
+        });
+
+        // Função que move o botão "Não" para uma nova posição aleatória
+        function moverBotao() {
+            const x = Math.random() * (window.innerWidth - botaoNao.offsetWidth);
+            const y = Math.random() * (window.innerHeight - botaoNao.offsetHeight);
+            botaoNao.style.left = `${x}px`;
+            botaoNao.style.top = `${y}px`;
+            botaoNao.style.position = 'absolute'; // Faz o botão se mover ao redor da tela
+        }
+
+        botaoSim.addEventListener("click", function() {
+            // Oculta os botões e mostra a mensagem final
+            document.querySelector('.container').style.display = 'none';
+            mensagemFinal.style.display = 'block';
+        });
+    </script>
+</body>
+</html>
